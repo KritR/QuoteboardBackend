@@ -1,5 +1,5 @@
 defmodule QuoteboardWeb.ErrorView do
-  use QuoteboardWeb, :view
+#  use QuoteboardWeb, :view
 
   def render("404.json", _assigns) do
     %{errors: %{detail: "Page not found"}}

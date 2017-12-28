@@ -40,7 +40,7 @@ config :phoenix, :stacktrace_depth, 20
 config :quoteboard, Quoteboard.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
-  password: "postgres",
-  database: "quoteboard_dev",
-  hostname: "localhost",
+  password: "password",
+  database: "postgres",
+  hostname: "qb-db",
   pool_size: 10

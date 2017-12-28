@@ -1,17 +1,16 @@
-defmodule Quoteboard.Boards.Board do
+defmodule Quoteboard.Content.Board do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Quoteboard.Boards.Board
+  alias Quoteboard.Content.Board
 
 
   schema "boards" do
-    field :deleted, :boolean, default: false
-    field :description, :string
     field :name, :string
+    field :description, :string
     field :public, :boolean, default: false
-    field :owner_id, :id
+    field :deleted, :boolean, default: false
     belongs_to :user, Quoteboard.Account.User
-    many_to_many :quotes, Quoteboard.Boards.Quote, join_through: "boards_quotes"
+    many_to_many :quotes, Quoteboard.Content.Quote, join_through: "boards_quotes"
 
     timestamps()
   end

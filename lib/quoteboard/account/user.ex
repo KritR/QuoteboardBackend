@@ -5,8 +5,8 @@ defmodule Quoteboard.Account.User do
 
 
   schema "users" do
-    field :email, :string
     field :name, :string
+    field :email, :string
     has_many :boards, Quoteboard.Boards.Board
     has_many :quotes, Quoteboard.Boards.Quote
 

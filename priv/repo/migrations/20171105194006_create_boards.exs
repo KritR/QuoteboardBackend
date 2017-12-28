@@ -7,7 +7,7 @@ defmodule Quoteboard.Repo.Migrations.CreateBoards do
       add :description, :text
       add :public, :boolean, default: true, null: true
       add :deleted, :boolean, default: false, null: false
-      add :owner_id, references(:users, on_delete: :nothing)
+      add :user_id, references(:users, on_delete: :nothing)
 
       timestamps()
     end
