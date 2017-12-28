@@ -1,0 +1,10 @@
+#Setup Phoenix Shell
+docker run --name qb-backend -it --rm -v "$PWD":/code marcelocg/phoenix bash
+#Setup DB
+docker run --name qb-db -e POSTGRES_PASSWORD=password -d postgres
+#Setup Network
+docker network create --driver bridge qb-net
+docker network connect qb-net qb-db
+docker network connect qb-net qb-backend
+#Login psql
+docker run -it --rm --link qb-db:postgres postgres psql -h postgres -U postgres
