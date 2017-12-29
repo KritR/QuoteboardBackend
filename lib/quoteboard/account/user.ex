@@ -7,8 +7,10 @@ defmodule Quoteboard.Account.User do
   schema "users" do
     field :name, :string
     field :email, :string
-    has_many :boards, Quoteboard.Boards.Board
-    has_many :quotes, Quoteboard.Boards.Quote
+    has_many :boards, Quoteboard.Content.Board
+    has_many :quotes, Quoteboard.Content.Quote
+    field :password, :string, virtual: true
+    field :password_hash, :string
 
     timestamps()
   end
@@ -16,7 +18,26 @@ defmodule Quoteboard.Account.User do
   @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:name, :email])
+    |> cast(attrs, [:name, :email], [:password])
     |> validate_required([:name, :email])
+    |> put_pass_hash()
   end
+
+  def registration_changeset(%User{} = user, params \\ %{}) do
+    user
+    |> cast(params, [:name, :email, :password])
+    |> validate_required([:name, :email, :password])
+    |> put_pass_hash()
+  end
+
+  defp put_pass_hash(changeset) do
+    case changeset do
+      %Ecto.Changeset{valid?: true, changes: %{password: pass}} ->
+        put_change(changeset, :password_hash, Comeonin.Argon2.hashpwsalt(pass))
+      _ ->
+        changeset
+    end
+  end
+
+
 end

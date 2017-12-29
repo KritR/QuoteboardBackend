@@ -5,7 +5,7 @@ defmodule Quoteboard.Repo.Migrations.CreateQuotes do
     create table(:quotes) do
       add :speaker, :string
       add :text, :text
-      add :date, :date
+      add :date_said, :date
       add :deleted, :boolean, default: false, null: false
       add :user_id, references(:users, on_delete: :nothing)
 
