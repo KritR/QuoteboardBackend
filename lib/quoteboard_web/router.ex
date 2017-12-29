@@ -3,8 +3,7 @@ defmodule QuoteboardWeb.Router do
 
   pipeline :graphql do
     plug :accepts, ["json"]
-    plug Guardian.Plug.VerifyHeader, realm: "Bearer"
-    plug Guardian.Plug.LoadResource
+    plug Quoteboard.Auth.AuthAccessPipeline
     plug QuoteboardWeb.Context
   end
 

@@ -8,7 +8,7 @@
 erl_crash.dump
 
 # Generated on edit by Vim
-/*.swp
+*.swp
 
 
 # Files matching config/*.secret.exs pattern contain sensitive
