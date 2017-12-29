@@ -13,9 +13,11 @@ defmodule QuoteboardWeb.Resolvers.Account do
     end
   end
 
-  def update_user(_parent, %{id: id, user: user_params}, _resolution) do
+  def update_user(_parent, %{user: user_params}, %{context: %{current_user: %{id: id}}}) do
     Quoteboard.Account.update_user(id, user_params)
   end
+
+  def update_user(_parent, %{user: user_params}, _resolution), do: {:error, "This operation requires authentication"}
 
   # THIS NEEDS TO BE REPLACED WITH AN EMAIL SENDOUT & VERIFICATION SYSTEM > UPDATE ASAP
   def register(_parent, params, _resolution) do
@@ -23,10 +25,7 @@ defmodule QuoteboardWeb.Resolvers.Account do
     register_session(params)
   end
 
-  # IDK WHY I DIDN'T EXTRAPOLATE OUT VARS HERE > FIX ?
-  def login(_parent, params, _resolution) do
-    register_session(params)
-  end
+  def login(_parent, params, _resolution), do: register_session(params)
 
   defp register_session(params) do
     with {:ok, user} <- Quoteboard.Account.Session.authenticate(params),
