@@ -12,6 +12,6 @@ defmodule Quoteboard.Repo.Migrations.CreateBoards do
       timestamps()
     end
 
-    create index(:boards, [:owner_id])
+    create index(:boards, [:user_id])
   end
 end

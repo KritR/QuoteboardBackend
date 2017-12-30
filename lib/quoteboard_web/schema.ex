@@ -41,6 +41,7 @@ defmodule QuoteboardWeb.Schema do
       resolve &Resolvers.Content.create_board/3
     end
     field :create_quote, type: :quote do
+      arg :board_id, non_null(:integer)
       arg :text, non_null(:string)
       arg :speaker, non_null(:string)
       arg :date_said, :date

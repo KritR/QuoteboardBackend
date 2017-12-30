@@ -8,8 +8,6 @@ defmodule Quoteboard.Guardian do
   def subject_for_token(_, _claims), do: { :error, "Unknown resource type" }
 
   def resource_from_claims(%{"sub" => "User:" <> id}), do: { :ok, Account.find_user(id) }
-  def resource_from_claims(claims) do 
-    { :error, "Unknown resource type" }
-  end
+  def resource_from_claims(_claims), do: { :error, "Unknown resource type" }
 
 end

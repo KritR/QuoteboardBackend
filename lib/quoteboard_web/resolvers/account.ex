@@ -17,7 +17,7 @@ defmodule QuoteboardWeb.Resolvers.Account do
     Quoteboard.Account.update_user(id, user_params)
   end
 
-  def update_user(_parent, %{user: user_params}, _resolution), do: {:error, "This operation requires authentication"}
+  def update_user(_parent, %{user: _user_params}, _resolution), do: {:error, "This operation requires authentication"}
 
   # THIS NEEDS TO BE REPLACED WITH AN EMAIL SENDOUT & VERIFICATION SYSTEM > UPDATE ASAP
   def register(_parent, params, _resolution) do

@@ -12,10 +12,8 @@ defmodule Quoteboard.Content do
   def create_quote(user, board, quote) do
     Ecto.build_assoc(user, :quotes)
     |> Content.Quote.changeset(quote)
-    |> Repo.preload(:boards)
-    |> Ecto.Changeset.change()
     |> Ecto.Changeset.put_assoc(:boards, [board])
-    |> Repo.insert!
+    |> Repo.insert
   end
 
   def find_board(id), do: Repo.get(Content.Board, id)

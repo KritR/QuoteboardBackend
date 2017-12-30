@@ -18,7 +18,7 @@ defmodule Quoteboard.Content.Quote do
   @doc false
   def changeset(%Quote{} = quote, attrs) do
     quote
-    |> cast(attrs, [:speaker, :text, :date, :deleted])
-    |> validate_required([:speaker, :text, :date, :deleted])
+    |> cast(attrs, [:speaker, :text, :date_said, :deleted])
+    |> validate_required([:speaker, :text])
   end
 end
