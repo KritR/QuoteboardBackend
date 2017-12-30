@@ -15,6 +15,14 @@ defmodule QuoteboardWeb.Schema do
     field :quotes, list_of(:quote) do
       resolve &Resolvers.Content.list_quotes/3
     end
+    @desc "Get a single board"
+    field :board, type: :board do
+      resolve &Resolvers.Content.find_board/3
+    end
+    @desc "Get a single quote"
+    field :quote, type: :quote do
+      resolve &Resolvers.Content.find_quote/3
+    end
     @desc "Get all users"
     field :users, list_of(:user) do
       resolve &Resolvers.Account.list_users/3

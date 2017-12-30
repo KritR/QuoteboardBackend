@@ -3,17 +3,24 @@ defmodule Quoteboard.Content do
 
   alias Quoteboard.{Repo, Content}
 
-  def create_board(board) do
-    %Content.Board{}
+  def create_board(user, board) do
+    Ecto.build_assoc(user, :boards)
     |> Content.Board.changeset(board)
     |> Repo.insert
   end
 
-  def create_quote(quote) do
-    %Content.Quote{}
+  def create_quote(user, board, quote) do
+    Ecto.build_assoc(user, :quotes)
     |> Content.Quote.changeset(quote)
-    |> Repo.insert
+    |> Repo.preload(:boards)
+    |> Ecto.Changeset.change()
+    |> Ecto.Changeset.put_assoc(:boards, [board])
+    |> Repo.insert!
   end
+
+  def find_board(id), do: Repo.get(Content.Board, id)
+
+  def find_quote(id), do: Repo.get(Content.Quote, id)
 
   def list_boards do
     Repo.all(Content.Board)
