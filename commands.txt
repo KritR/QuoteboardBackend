@@ -1,10 +1,22 @@
-#Setup Phoenix Shell
-docker run --name qb-backend -it --rm -v "$PWD":/code marcelocg/phoenix bash
+#Use Docker Quickstart Terminal
 #Setup DB
 docker run --name qb-db -e POSTGRES_PASSWORD=password -d postgres
+
 #Setup Network
 docker network create --driver bridge qb-net
 docker network connect qb-net qb-db
+	#this last one isn't neccessary 
 docker network connect qb-net qb-backend
-#Login psql
+
+#Setup Phoenix Shell
+docker run --name qb-backend --network qb-net -p 8080:4000 -it --rm -v "$PWD":/code marcelocg/phoenix bash
+
+#Setting up dependencies (if you need to)
+mix deps.get
+mix deps.compile
+mix ecto.create (if db is fresh)
+	or mix ecto.migrate (if db just needs to be updated)
+
+
+#Login psql (if you want to)
 docker run -it --rm --link qb-db:postgres postgres psql -h postgres -U postgres
