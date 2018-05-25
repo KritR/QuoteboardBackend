@@ -9,6 +9,7 @@ defmodule Quoteboard.Account.User do
     field :email, :string
     has_many :boards, Quoteboard.Content.Board
     has_many :quotes, Quoteboard.Content.Quote
+    many_to_many :likes, Quoteboard.Content.Quote, join_through: "likes"
     field :password, :string, virtual: true
     field :password_hash, :string
 
