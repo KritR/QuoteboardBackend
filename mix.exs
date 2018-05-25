@@ -41,14 +41,14 @@ defmodule Quoteboard.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:absinthe, "~> 1.4.0-rc or ~> 1.4", override: true},
-      {:absinthe_plug, "~> 1.4.0-rc or ~> 1.4", override: true},
+      {:absinthe, "~> 1.4.0", override: true},
+      {:absinthe_plug, "~> 1.4.0", override: true},
       {:absinthe_ecto, ">= 0.0.0"},
       {:poison, "~> 3.1"},
       {:faker, "~> 0.9"},
       {:argon2_elixir, "~> 1.2"},
       {:comeonin, "~> 4.0.3"},
-      {:guardian, "~> 1.0-beta"}
+      {:guardian, "~> 1.0"}
     ]
   end
 
