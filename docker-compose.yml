@@ -1,11 +1,11 @@
 version: '3'
 services:
   qb-backend:
-    image: kritr/phoenix
+    image: bitwalker/alpine-elixir-phoenix
     ports:
     - "8080:4000" 
     volumes:
-    - .:/code
+    - .:/opt/app
     links:
     - db
     command: mix serve
