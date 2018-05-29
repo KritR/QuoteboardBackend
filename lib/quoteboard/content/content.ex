@@ -54,7 +54,7 @@ defmodule Quoteboard.Content do
 
   def unlike_quote(user, quote_id) do
     qb_quote = quote_id |> find_quote |> Repo.preload(:likes) 
-    users = qb_quote.likes |> Enum.delete(user) 
+    users = qb_quote.likes |> List.delete(user) 
 
     qb_quote 
     |> Ecto.Changeset.change 
