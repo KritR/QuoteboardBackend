@@ -9,6 +9,7 @@ defmodule Quoteboard.Schema.AccountTypes do
     field :email, :string
     field :boards, list_of(:board), resolve: assoc(:boards)
     field :quotes, list_of(:quote), resolve: assoc(:quotes)
+    field :likes, list_of(:quote), resolve: assoc(:likes)
   end
   
   input_object :update_user_params do

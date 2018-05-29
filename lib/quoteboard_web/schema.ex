@@ -57,6 +57,14 @@ defmodule QuoteboardWeb.Schema do
       arg :board, :update_quote_params
       resolve &Resolvers.Content.update_quote/3
     end
+    field :like_quote, type: :quote do
+      arg :id, non_null(:integer)
+      resolve &Resolvers.Content.like_quote/3
+    end
+    field :unlike_quote, type: :quote do
+      arg :id, non_null(:integer)
+      resolve &Resolvers.Content.unlike_quote/3
+    end
     field :update_user, type: :user do
       arg :user, :update_user_params
       resolve &Resolvers.Account.update_user/3

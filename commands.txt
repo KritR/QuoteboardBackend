@@ -2,3 +2,5 @@
 docker-compose up
 # Run Migrations
 docker-compose run qb-backend mix setup
+# Restart just the server
+docker-compose restart qb-backend

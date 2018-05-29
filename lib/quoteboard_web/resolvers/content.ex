@@ -47,6 +47,15 @@ defmodule QuoteboardWeb.Resolvers.Content do
   end
   def update_quote(_parent, _args, _resolution), do: {:error, "This operation requires authentication"}
 
+  def like_quote(_parent, %{id: id}, %{context: %{current_user: %{id: user_id} = user}}) do
+    Content.like_quote(user, id)
+  end
+  def like_quote(_parent, _args, _resolution), do: {:error, "This operation requires authentication"}
+  def unlike_quote(_parent, %{id: id}, %{context: %{current_user: %{id: user_id} = user}}) do
+    Content.unlike_quote(user, id)
+  end
+  def unlike_quote(_parent, _args, _resolution), do: {:error, "This operation requires authentication"}
+
   def delete_board(_parent, %{id: id}, %{context: %{current_user: %{id: user_id}}}) do
     case Content.find_board(id).user_id do
       ^user_id -> Content.delete_board(id)

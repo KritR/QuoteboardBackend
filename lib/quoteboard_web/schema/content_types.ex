@@ -21,7 +21,8 @@ defmodule Quoteboard.Schema.ContentTypes do
     field :date_said, :date
     field :deleted, :boolean
     field :owner, :user, resolve: assoc(:user)
-    field :boards, list_of(:board)
+    field :boards, list_of(:board), resolve: assoc(:boards)
+    field :likes, list_of(:user), resolve: assoc(:likes)
   end
 
   input_object :update_board_params do

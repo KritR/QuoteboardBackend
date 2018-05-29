@@ -11,7 +11,7 @@ defmodule Quoteboard.Content.Quote do
     field :deleted, :boolean, default: false
     belongs_to :user, Quoteboard.Account.User
     many_to_many :boards, Quoteboard.Content.Board, join_through: "boards_quotes"
-    many_to_many :likes, Quoteboard.Account.User, join_through: "likes"
+    many_to_many :likes, Quoteboard.Account.User, join_through: "likes", on_replace: :delete
 
     timestamps()
   end
