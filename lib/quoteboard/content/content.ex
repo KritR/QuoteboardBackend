@@ -49,7 +49,7 @@ defmodule Quoteboard.Content do
     qb_quote 
     |> Ecto.Changeset.change 
     |> Ecto.Changeset.put_assoc(:likes, users)
-    |> Repo.update!
+    |> Repo.update
   end
 
   def unlike_quote(user, quote_id) do
@@ -59,7 +59,7 @@ defmodule Quoteboard.Content do
     qb_quote 
     |> Ecto.Changeset.change 
     |> Ecto.Changeset.put_assoc(:likes, users)
-    |> Repo.update!
+    |> Repo.update
   end
 
   def delete_board(board_id) do
