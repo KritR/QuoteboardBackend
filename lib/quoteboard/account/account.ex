@@ -1,7 +1,7 @@
 defmodule Quoteboard.Account do
   import Ecto.Query
   import Ecto.Changeset
-  
+
   alias Quoteboard.{Repo, Account}
 
   def list_users do
@@ -15,14 +15,13 @@ defmodule Quoteboard.Account do
   def update_user(id, user) do
     Repo.get!(Account.User, id)
     |> Account.User.changeset(user)
-    |> Repo.update
+    |> Repo.update()
   end
 
   def create_user(user) do
     %Account.User{}
     |> Account.User.registration_changeset(user)
     |> change(email: String.downcase(user.email))
-    |> Repo.insert
+    |> Repo.insert()
   end
-
 end

@@ -4,6 +4,7 @@ defmodule Quoteboard.Account.Session do
 
   def authenticate(params) do
     user = Repo.get_by(User, email: String.downcase(params.email))
+
     case check_password(user, params.password) do
       true -> {:ok, user}
       _ -> {:error, "Incorrect login credentials"}

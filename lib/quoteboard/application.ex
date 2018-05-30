@@ -11,7 +11,7 @@ defmodule Quoteboard.Application do
       # Start the Ecto repository
       supervisor(Quoteboard.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(QuoteboardWeb.Endpoint, []),
+      supervisor(QuoteboardWeb.Endpoint, [])
       # Start your own worker by calling: Quoteboard.Worker.start_link(arg1, arg2, arg3)
       # worker(Quoteboard.Worker, [arg1, arg2, arg3]),
     ]
