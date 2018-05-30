@@ -1,7 +1,7 @@
 defmodule QuoteboardWeb.Resolvers.Content do
   alias Quoteboard.Content
 
-  @auth_error = "This operation requires authentication"
+  @auth_error "This operation requires authentication"
 
   def create_board(_parent, args, %{context: %{current_user: user}}) do
     Content.create_board(user, args)
