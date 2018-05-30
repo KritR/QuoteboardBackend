@@ -19,16 +19,24 @@ defmodule Quoteboard.Account.User do
   @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:name, :email], [:password])
+    |> cast(attrs, [:name, :email, :password])
+    |> validate_length(:password, min: 8)
     |> validate_required([:name, :email])
-    |> put_pass_hash()
+    |> update_change(:email, &String.downcase/1)
+    |> validate_format(:email, ~r/^\w+@\w+\.\w{2,}$/)
+    |> unique_constraint(:email, name: :user_email_index)
+    |> put_pass_hash
   end
 
   def registration_changeset(%User{} = user, params \\ %{}) do
     user
     |> cast(params, [:name, :email, :password])
     |> validate_required([:name, :email, :password])
-    |> put_pass_hash()
+    |> validate_length(:password, min: 8)
+    |> update_change(:email, &String.downcase/1)
+    |> validate_format(:email, ~r/^\w+@\w+\.\w{2,}$/)
+    |> unique_constraint(:email, name: :user_email_index)
+    |> put_pass_hash
   end
 
   defp put_pass_hash(changeset) do
