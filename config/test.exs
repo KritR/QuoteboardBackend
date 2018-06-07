@@ -13,7 +13,7 @@ config :logger, level: :warn
 config :quoteboard, Quoteboard.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
-  password: "postgres",
-  database: "quoteboard_test",
-  hostname: "localhost",
+  password: "",
+  database: "postgres",
+  hostname: "db",
   pool: Ecto.Adapters.SQL.Sandbox

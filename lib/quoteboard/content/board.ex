@@ -18,6 +18,6 @@ defmodule Quoteboard.Content.Board do
   def changeset(%Board{} = board, attrs) do
     board
     |> cast(attrs, [:name, :description, :public, :deleted])
-    |> validate_required([:name, :description, :public, :deleted])
+    |> validate_required([:name, :description])
   end
 end
